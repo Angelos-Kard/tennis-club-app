@@ -2571,11 +2571,11 @@ class GraphEnv():
                         else:
                             flag1 = q.add_transaction(self.cursor, self.id_player1_text.get(), 0, int(float(field[-8:-5]))*int(duration[0]), "Ενοικίαση", "24%", "-", int(float(field[-8:-5]))*int(duration[0]))
                             flag2 = q.add_transaction(self.cursor, self.player2_id_text.get(), 0, int(float(field[-8:-5]))*int(duration[0]), "Ενοικίαση", "24%", "-", int(float(field[-8:-5]))*int(duration[0]))
-                        if flag1 == False or flag2 == False:
-                            tkm.showerror(title="Ενοικίαση Γηπέδου", message="Μία ή περισσότερες συναλλαγές δεν καταχωρήθηκαν")
-                        else:
-                            tkm.showinfo(title="Ενοικίαση Γηπέδου", message="Η ενοικίαση καταχωρήθηκε με επιτυχία")
-                            self.page_transition_secretary(5)
+                            if flag1 == False or flag2 == False:
+                                tkm.showerror(title="Ενοικίαση Γηπέδου", message="Μία ή περισσότερες συναλλαγές δεν καταχωρήθηκαν")
+                            else:
+                                tkm.showinfo(title="Ενοικίαση Γηπέδου", message="Η ενοικίαση καταχωρήθηκε με επιτυχία")
+                                self.page_transition_secretary(5)
 
 
     def add_new_transaction(self):
