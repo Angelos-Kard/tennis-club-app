@@ -11,7 +11,7 @@ def register(name, surname, ssn, address, email, telephone, username, password):
         tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Όνομα' είναι κενό")
         return False
     elif name.isalpha() == False:
-        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Όνομα' πρέπει να περιέχει μόνο ελληνικούς χαρακτήρες")
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Όνομα' πρέπει να περιέχει μόνο γράμματα")
         return False
     
     #elif re.match("^[Α-Ωα-ωΆάΈέΎύΫϋΰΊίϊΐΌόΉήΏώ]*$", name) is None:
@@ -22,7 +22,7 @@ def register(name, surname, ssn, address, email, telephone, username, password):
         tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' είναι κενό")
         return False
     elif surname.isalpha() == False:
-        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' πρέπει να περιέχει μόνο ελληνικούς χαρακτήρες")
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' πρέπει να περιέχει μόνο γράμματα")
         return False
     #elif re.match("^[Α-Ωα-ωΆάΈέΎύΫϋΰΊίϊΐΌόΉήΏώ]*$", surname) is None:
     #    tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' πρέπει να περιέχει μόνο ελληνικούς χαρακτήρες")
@@ -360,3 +360,42 @@ def add_rent(date):
     except ValueError:
         tkm.showerror(title="Προσθήκη Ενοικίασης", message="Η ημερομηνία πρέπει να έχει την μορφή: YYYY-MM-dd, όπου:\nYYYY: Η χρονολογία\nMM: Ο μήνας\ndd: Η μέρα")
         return False
+
+
+def date_and_time_format(date, time):
+    try:
+        datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%w')
+    except ValueError:
+        tkm.showerror(title="Προσθήκη Αγώνα", message="Η ημερομηνία πρέπει να έχει την μορφή: YYYY-MM-dd, όπου:\nYYYY: Η χρονολογία\nMM: Ο μήνας\ndd: Η μέρα")
+        return False
+
+    try:
+        datetime.datetime.strptime(time, "%H:%M")
+    except ValueError:
+        tkm.showerror(title="Προσθήκη Αγώνα", message="Η ώρα πρέπει να έχει την μορφή: HH:MM, όπου\nHH: η ώρα\nMM: τα λεπτά\nΗ ώρα πρέπει να συμπληρώνεται σε 24ώρη μορφή (π.χ. 16:20)")
+        return False
+
+    return True
+
+
+def player_2_info(name, surname):
+    if len(name) == 0:
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Όνομα Αντίπαλου' είναι κενό")
+        return False
+    elif name.isalpha() == False:
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Όνομα Αντίπαλου' πρέπει να περιέχει μόνο γράμματα")
+        return False
+    
+    #elif re.match("^[Α-Ωα-ωΆάΈέΎύΫϋΰΊίϊΐΌόΉήΏώ]*$", name) is None:
+    #    tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' πρέπει να περιέχει μόνο ελληνικούς χαρακτήρες")
+    #    return False
+
+    if len(surname) == 0:
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο Αντίπαλου' είναι κενό")
+        return False
+    elif surname.isalpha() == False:
+        tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο Αντίπαλου' πρέπει να περιέχει μόνο γράμματα")
+        return False
+    #elif re.match("^[Α-Ωα-ωΆάΈέΎύΫϋΰΊίϊΐΌόΉήΏώ]*$", surname) is None:
+    #    tkm.showerror(title="Εγγραφή", message="Το πεδίο 'Επώνυμο' πρέπει να περιέχει μόνο ελληνικούς χαρακτήρες")
+    #    return False
