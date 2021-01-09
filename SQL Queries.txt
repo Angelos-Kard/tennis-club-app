@@ -1,0 +1,187 @@
+1. Έλεγχος του username και του password του μέλους, ώστε να συνδεθεί
+"SELECT memberid FROM melos WHERE username=? AND password=?", (username,password)
+
+2. Έλεγχος του username και του password του υπαλλήλου, ώστε να συνδεθεί
+"SELECT employeeid,douleia FROM prosopiko WHERE username=? AND password=?", (username,password)
+
+3. Έλεγχος της μοναδικότητας του username κατά την εγγραφή του μέλους, (username,)
+"SELECT username FROM melos WHERE username=?"
+
+4. Έλεγχος αν το νέο μέλος ανήκει ήδη στον πίνακα πελατών
+"SELECT ar_tautothtas FROM pelaths WHERE ar_tautothtas=?", (ssn,)
+
+5. Προσθήκη καταχώρησης στον πίνακα πελατών
+"INSERT INTO pelaths VALUES (?,?,?,?,?,?,?,?)", 
+(memberid, name.upper(), surname.upper(), sex, ssn, address, email, telephone)
+
+6. Προσθήκη καταχώρησης στον πίνακα μελών
+"INSERT INTO melos VALUES (?,?,?,?,?,?)", (memberid, int(subscription[0]), date, username, password, "0"
+
+7. Ενημέρωση των στοιχείων ενός πελάτη
+"UPDATE pelaths SET onoma=?,epwnumo=?,sex=?,dieu8unsh=?,email=?,thlefwno=? WHERE ar_tautothtas=?", (name.upper(),surname.upper(),sex,address,email,telephone,ssn)
+
+8. Πληροφορίες για τη συνδρομή ενός μέλους
+"SELECT sundromh, prwth_eggrafh FROM melos WHERE memberid=?", (memberid,)
+
+9. Πληροφορίες για συγκεκριμένη συνδρομή
+"SELECT * FROM sundromh where id=?", (sub_num,)
+
+10. Αγώνες συγκεκριμένου μέλους, οι οποίοι έχουν ολοκληρωθεί
+"SELECT * FROM agwnas WHERE status IS NOT NULL AND memberid=? ORDER BY date;", (memberid,)
+
+11. Επερχόμενοι αγώνες συγκεκριμένου μέλους
+"SELECT * FROM agwnas WHERE status IS NULL AND memberid=? AND date>CURRENT_DATE ORDER BY date;", (memberid,)
+
+12. Πληροφορίες αγώνων που έχουν ολοκληρωθεί, αλλά δεν έχει καταγραφεί το αποτέλεσμα
+"SELECT * FROM agwnas WHERE status IS NULL AND memberid=? AND date<CURRENT_DATE ORDER BY date;", (memberid,)
+
+13. Ενημέρωση μη καταχωρημένου αγώνα
+"UPDATE agwnas SET score=?, status=? 
+WHERE memberid=? AND date=? AND time=?", (score[i], status[i], memberid, date[i], time[i])
+
+14. Πληροφορίες Γηπέδου
+"SELECT * FROM ghpedo WHERE fieldid=?", (fieldid,)
+
+15. Κατάταξη μελών με βάση το ποσοστό νικών
+"SELECT memberid, win_ratio FROM melos ORDER BY win_ratio DESC"
+
+16. Τα προγράμματα που συμμετέχει ένα μέλος
+"SELECT * FROM sumetexei WHERE memberid=?", (memberid,)
+
+17. Πληροφορίες ενός προγράμματος
+"SELECT epipedo, hlikia FROM programa WHERE programid=?", (programid,)
+
+18. Πληροφορίες υπαλλήλου
+"SELECT * FROM prosopiko WHERE employeeid=?", (employeeid,)
+
+19. Οι κωδικοί των προγραμμάτων που έχει αναλάβει ένας γυμναστής για τη φετινή χρονιά
+"SELECT * FROM analamvanei WHERE employeeid=? AND year=strftime('%Y', CURRENT_TIMESTAMP)", (employeeid,)
+
+20. Πληροφορίες για τα προγράμματα που έχει αναλάβει ένας γυμναστής φέτος
+"SELECT analamvanei.employeeid, programa.programid, programa.epipedo, programa.hlikia FROM(programa JOIN analamvanei ON analamvanei.programid = programa.programid) WHERE analamvanei.employeeid = ? AND year=strftime('%Y', CURRENT_TIMESTAMP)", (employeeid,)
+
+21. Όλα τα μέλη που συμμετέχουν σε συγκεκριμένο πρόγραμμα
+'''SELECT sumetexei.programid, melos.memberid, pelaths.onoma, pelaths.epwnumo, pelaths.thlefwno, melos.win_ratio FROM ((melos JOIN pelaths ON melos.memberid = pelaths.id_pelath) JOIN sumetexei ON melos.memberid = sumetexei.memberid) WHERE sumetexei.programid = ?;''', (programid,)
+
+22. Αφαίρεση μέλους από πρόγραμμα
+"DELETE FROM sumetexei WHERE memberid=? AND programid=?", (memberid,programid)
+
+23. Όλες οι πληροφορίες όλων των μέλους του club
+"SELECT * FROM (pelaths JOIN melos ON id_pelath=memberid) ORDER BY epwnumo, onoma"
+
+24. Προσθήκη ενός αγώνα μεταξύ δύο μελών/πελατών του club
+'''
+INSERT INTO agwnas (memberid, onoma_antipalou, epwnumo_antipalou, fieldid, date, time) 
+VALUES (?, (SELECT onoma FROM pelaths WHERE id_pelath=?), (SELECT epwnumo FROM pelaths WHERE id_pelath=?), ?, ?, ?),
+(?, (SELECT onoma FROM pelaths WHERE id_pelath=?), (SELECT epwnumo FROM pelaths WHERE id_pelath=?), ?, ?, ?)
+''', (id_player1, id_player2, id_player2, fieldid, date, time, id_player2, id_player1, id_player1, fieldid, date, time)
+
+25. Εύρεση των διαθέσιμων γηπέδων με βάση την ημερομηνία και ώρα επιλογής του χρήστη
+'''
+SELECT fieldid, tupos, `timh/h` FROM ghpedo 
+WHERE fieldid NOT IN (SELECT fieldid FROM katalamvanei WHERE hmera=? AND ((arxh>=? AND arxh<?) OR (lh3h>? AND lh3h<=?))) 
+AND fieldid NOT IN (SELECT fieldid FROM enoikiazei WHERE hmeromhnia = ? AND ((wra>=? AND wra<?) OR (wra+diarkeia>? AND wra+diarkeia<=?)))
+''', (day, time, end_time, time, end_time, date, time, end_time, int_time, int_end_time)
+
+26. Προσθήκη Ενοικίασης
+"INSERT INTO enoikiazei VALUES (?, ?, ?, ?, ?)", (fieldid, id_player1, date, time, duration)
+
+27. Προσθήκη μιας συναλλαγής
+'''INSERT INTO sunallages VALUES (?, ?, ?, ?, CURRENT_DATE, CURRENT_TIME, ?, ?, ?, ?)''', 
+(id_tr, id_customer, deposit, remain, reason, fpa, payment_method, total_cost)
+
+28. Εύρεση των εκκρεμών συναλλαγών ενός μέλους
+"SELECT * FROM sunallages WHERE id_pelath = ? AND upoloipo > 0 ORDER BY hmeromhnia DESC, wra", (id_customer,)
+
+29. Εύρεση των ολοκληρομένων συναλλαγών
+"SELECT * FROM sunallages WHERE id_pelath = ? AND upoloipo = 0 ORDER BY hmeromhnia DESC, wra", (id_customer,)
+
+30. Ενημέρωση εκκρεμής συναλλαγής
+"UPDATE sunallages 
+SET katavlh8en_poso = ?, upoloipo = ?, hmeromhnia=CURRENT_DATE, wra=CURRENT_TIME, tropos_plhrwmhs = ? 
+WHERE id_sunallaghs=?", 
+(float(old_deposit)+float(new_deposit), float(remain)-float(new_deposit), payment, id_tr)
+
+31. Συνολική κατάταξη των μελών παραθέτοντας σύνολο αγώνω, σύνολο νικών και ποσοστό νίκης
+'''
+SELECT melos.memberid, pelaths.onoma, pelaths.epwnumo,  melos.win_ratio, 
+SUM(CASE WHEN status IS NOT NULL THEN 1 ELSE 0 END) AS 'total_matches',
+SUM(CASE WHEN status = 'W' THEN 1 ELSE 0 END) AS 'total_wins'
+FROM ((melos JOIN pelaths ON id_pelath = melos.memberid) LEFT JOIN agwnas ON melos.memberid = agwnas.memberid) 
+GROUP BY agwnas.memberid 
+ORDER BY melos.win_ratio DESC
+'''
+
+32. Εύρεση Όλων των υπαλλήλων
+"SELECT * FROM prosopiko WHERE douleia <> 'Διαχειριστής' ORDER BY epwnumo, onoma"
+
+33. Εύρεση όλων των ενοικιάσεων
+'''
+SELECT enoikiazei.*, pelaths.onoma, pelaths.epwnumo 
+FROM enoikiazei JOIN pelaths ON enoikiazei.id_pelath=pelaths.id_pelath 
+ORDER BY enoikiazei.hmeromhnia DESC, wra, epwnumo, onoma
+'''
+
+34. Διαγραφή Μέλους
+"DELETE FROM melos WHERE memberid=?", (memberid,)
+
+35. Διαγραφή Υπαλλήλου
+"DELETE FROM prosopiko WHERE employeeid=?", (employeeid,)
+
+36. Αφαίρεση γυμναστή από πρόγραμμα
+"DELETE FROM analamvanei WHERE employeeid=?", (employeeid,)
+
+37. Προσθήκη νέου υπαλλήλου
+"INSERT INTO prosopiko 
+VALUES (?, CURRENT_DATE, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+(employeeid, ssn, name, surname, address, email, telephone, simvasi, type_of_job, salary, username, password)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
