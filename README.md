@@ -20,7 +20,6 @@
 - [\_checkEntryBox.py](_checkEntryBox.py): Περιέχει συναρτήσεις για τον έλεγχο των τιμών που δίνει ο χρήστης στα πεδία (Entry Boxes)
 - [tenisclub.db](tenisclub.db): Αποτελεί την βάση δεδομένων της εφαρμογής  
 
-- - - -
 
 - [tennis_club_team39.exe](tennis_club_team39.exe): Το εκτελέσιμο αρχείο
 - [tennis_club_for_debugging.exe](tennis_club_for_debugging.exe): Εκτελέσιμο αρχείο το οποίο περιλαμβάνει τερματικό για την εκτύπωση σφαλμάτων
@@ -30,6 +29,20 @@
 - ERD και Σχεσιακό Μοντέλο/diagram.jpg: Το ERD μοντέλο
 - ERD και Σχεσιακό Μοντέλο/diagram.erdm: Το ERD μοντέλο σε μορφή, που μπορεί να γίνει import στο [ERDMaker](https://erdmaker.com)
   
+- - - -
+
+## Βιβλιοθήκες
+
+Αξιοποιήθηκαν βασικές βιβλιοθήκες της Python, οι οποίες και παρατίθονται παρακάτω:
+- tkinter
+- datetime
+- re
+- sqlite3
+- sys
+- os
+- random
+- string
+
 - - - -
   
 ## Λειτουργίες Εφαρμογής:  
