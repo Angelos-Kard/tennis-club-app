@@ -23,7 +23,7 @@
 
 - [tennis_club_team39.exe](tennis_club_team39.exe): Το εκτελέσιμο αρχείο
 - [dummy_accounts.md](dummy_accounts.md): Περιλαμβάνει μερικούς λογαριασμούς, οι οποίοι είναι αποθηκευμένοι στη βάση δεδομένων, με σκοπό τον έλεγχο αυτής
-- txt files/SQL Queries.txt: Περιλαμβάνει τα κυριότερα queries που χρησιμοποιήθηκαν στο πρόγραμμα
+- Extra Files/SQL Queries.txt: Περιλαμβάνει τα κυριότερα queries που χρησιμοποιήθηκαν στο πρόγραμμα
 - ERD και Σχεσιακό Μοντέλο/sxesiako.png: Το σχεσιακό μοντέλο
 - ERD και Σχεσιακό Μοντέλο/diagram.jpg: Το ERD μοντέλο
 - ERD και Σχεσιακό Μοντέλο/diagram.erdm: Το ERD μοντέλο σε μορφή, που μπορεί να γίνει import στο [ERDMaker](https://erdmaker.com)
