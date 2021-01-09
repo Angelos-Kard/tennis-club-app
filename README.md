@@ -25,10 +25,10 @@
 - [tennis_club_team39.exe](tennis_club_team39.exe): Το εκτελέσιμο αρχείο
 - [tennis_club_for_debugging.exe](tennis_club_for_debugging.exe): Εκτελέσιμο αρχείο το οποίο περιλαμβάνει τερματικό για την εκτύπωση σφαλμάτων
 - [dummy_accounts.md](dummy_accounts.md): Περιλαμβάνει μερικούς λογαριασμούς, οι οποίοι είναι αποθηκευμένοι στη βάση δεδομένων, με σκοπό τον έλεγχο αυτής
-- [SQL Queries.txt](team_39/txt files/SQL Queries.txt): Περιλαμβάνει τα κυριότερα queries που χρησιμοποιήθηκαν στο πρόγραμμα
-- [sxesiako.png](ERD και Σχεσιακό Μοντέλο/sxesiako.png): Το σχεσιακό μοντέλο
-- [diagram.jpg](ERD και Σχεσιακό Μοντέλο/diagram.jpg): Το ERD μοντέλο
-- [diagram.erdm](ERD και Σχεσιακό Μοντέλο/diagram.erdm): Το ERD μοντέλο σε μορφή, που μπορεί να γίνει import στο [ERDMaker](https://erdmaker.com)
+- txt files/SQL Queries.txt: Περιλαμβάνει τα κυριότερα queries που χρησιμοποιήθηκαν στο πρόγραμμα
+- ERD και Σχεσιακό Μοντέλο/sxesiako.png: Το σχεσιακό μοντέλο
+- ERD και Σχεσιακό Μοντέλο/diagram.jpg: Το ERD μοντέλο
+- ERD και Σχεσιακό Μοντέλο/diagram.erdm: Το ERD μοντέλο σε μορφή, που μπορεί να γίνει import στο [ERDMaker](https://erdmaker.com)
   
 - - - -
   
