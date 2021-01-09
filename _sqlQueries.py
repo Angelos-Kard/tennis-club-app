@@ -4,7 +4,7 @@ import pymysql
 import string
 from datetime import datetime
 import random as rd
-from operator import itemgetter
+
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
