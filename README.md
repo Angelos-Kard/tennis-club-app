@@ -30,6 +30,7 @@
 - [diagram.jpg](ERD και Σχεσιακό Μοντέλο/diagram.jpg): Το ERD μοντέλο
 - [diagram.erdm](ERD και Σχεσιακό Μοντέλο/diagram.erdm): Το ERD μοντέλο σε μορφή, που μπορεί να γίνει import στο [ERDMaker](https://erdmaker.com)
   
+- - - -
   
 ## Λειτουργίες Εφαρμογής:  
   
