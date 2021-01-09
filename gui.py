@@ -1,6 +1,5 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
-import tkinter.tix as tx
 import datetime
 import _frameDestroyers as fd
 import _sqlQueries as q
@@ -2410,29 +2409,33 @@ class GraphEnv():
 
 
     def add_match_event(self, player2, fieldid):
-        if fieldid != "-" and player2 != "---":
+        if fieldid != "-" and player2 != "---" and self.date_text.get()!="" and self.time_text.get()!="":
             flag = q.is_a_customer(self.cursor, self.id_player1_text.get())
             if flag == False:
                 tkm.showerror(title="Προσθήκη Αγώνα", message="Δεν υπάρχει πελάτης ή μέλος με ID: "+self.id_player1_text.get())
             else:
-                if player2 == "Μέλος" or player2 == "Πελάτης":
-                    flag = q.is_a_customer(self.cursor, self.player2_id_text.get())
-                    if flag == False:
-                        tkm.showerror(title="Προσθήκη Αγώνα", message="Δεν υπάρχει πελάτης ή μέλος με ID: "+self.player2_id_text.get())
-                    else:
-                        flag = q.add_match_2_ids(self.cursor, self.id_player1_text.get(), self.player2_id_text.get(), self.date_text.get(), self.time_text.get(), fieldid[0])
+                flag = checking.date_and_time_format(self.date_text.get(), self.time_text.get())
+                if flag == True:
+                    if player2 == "Μέλος" or player2 == "Πελάτης":
+                        flag = q.is_a_customer(self.cursor, self.player2_id_text.get())
                         if flag == False:
-                            tkm.showerror(title="Προσθήκη Αγώνα", message="Ο αγώνας δεν προστέθηκε")
+                            tkm.showerror(title="Προσθήκη Αγώνα", message="Δεν υπάρχει πελάτης ή μέλος με ID: "+self.player2_id_text.get())
                         else:
-                            tkm.showinfo(title="Προσθήκη Αγώνα", message="Ο αγώνας προστέθηκε με επιτυχία")
-                            self.page_transition_secretary(4)
-                elif player2 == "Τίποτα από τα παραπάνω":
-                    flag = q.add_match_1_id(self.cursor, self.id_player1_text.get(), self.player2_name_text.get(), self.player2_surname_text.get(), self.date_text.get(), self.time_text.get(), fieldid)
-                    if flag == False:
-                        tkm.showerror(title="Προσθήκη Αγώνα", message="Ο αγώνας δεν προστέθηκε")
-                    else:
-                        tkm.showinfo(title="Προσθήκη Αγώνα", message="Ο αγώνας προστέθηκε με επιτυχία")
-                        self.page_transition_secretary(4)
+                            flag = q.add_match_2_ids(self.cursor, self.id_player1_text.get(), self.player2_id_text.get(), self.date_text.get(), self.time_text.get(), fieldid[0])
+                            if flag == False:
+                                tkm.showerror(title="Προσθήκη Αγώνα", message="Ο αγώνας δεν προστέθηκε")
+                            else:
+                                tkm.showinfo(title="Προσθήκη Αγώνα", message="Ο αγώνας προστέθηκε με επιτυχία")
+                                self.page_transition_secretary(4)
+                    elif player2 == "Τίποτα από τα παραπάνω":
+                        flag = checking.player_2_info(self.player2_name_text.get(), self.player2_surname_text.get())
+                        if flag == True:
+                            flag = q.add_match_1_id(self.cursor, self.id_player1_text.get(), self.player2_name_text.get(), self.player2_surname_text.get(), self.date_text.get(), self.time_text.get(), fieldid)
+                            if flag == False:
+                                tkm.showerror(title="Προσθήκη Αγώνα", message="Ο αγώνας δεν προστέθηκε")
+                            else:
+                                tkm.showinfo(title="Προσθήκη Αγώνα", message="Ο αγώνας προστέθηκε με επιτυχία")
+                                self.page_transition_secretary(4)
 
 
     def new_rent(self):
