@@ -166,7 +166,7 @@ def edit_profile(self, cursor, username_new, password_new, memberid):
 
 def completed_matches(self, cursor, memberid):
     try:
-        cursor.execute("SELECT * FROM agwnas WHERE status IS NOT NULL AND memberid=? ORDER BY date;", (memberid,))
+        cursor.execute("SELECT * FROM agwnas WHERE status IS NOT NULL AND memberid=? ORDER BY date DESC;", (memberid,))
         row = cursor.fetchall()
         if len(row) == 0:
             return 1
@@ -231,7 +231,9 @@ def update_win_ratio(cursor, memberid):
         for x in row:
             total_wins = int(x)
 
-        ratio = round(float(total_wins)/total_matches, 2) * 100
+        if float(total_matches) == 0: ratio = 0
+        else:
+            ratio = round(float(total_wins)/total_matches, 2) * 100
  
 
 
@@ -599,7 +601,7 @@ def admin_total_ranking(cursor):
         SUM(CASE WHEN status = 'W' THEN 1 ELSE 0 END) AS 'total_wins'
         FROM ((melos JOIN pelaths ON id_pelath = melos.memberid) LEFT JOIN agwnas ON melos.memberid = agwnas.memberid) 
         GROUP BY agwnas.memberid 
-        ORDER BY melos.win_ratio DESC''')
+        ORDER BY melos.win_ratio DESC, total_matches DESC''')
         row = cursor.fetchall()
         return row
     except sqlite3.Error as e: print(e); return
