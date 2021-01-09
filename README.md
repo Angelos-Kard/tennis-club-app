@@ -9,13 +9,15 @@
 
 ## Για το άνοιγμα της εφαρμογής μπορείτε:
 - Να εκτελέσετε το πρόγραμμα tennis_club_team39.exe
+	- Αρκεί να κατεβάσετε μόνο το εκτελέσιμο αρχείο
 - Να εκτελέσετε το αρχείο [gui.py](gui.py) σε τερματικό ή μέσω editor
+	- Απαιτείται το κατέβασμα των αρχείων [gui.py](gui.py), [\_sqlQueries.py](_sqlQueries.py), [\_frameDestroyers.py](_frameDestroyers.py), [\_checkEntryBox.py](_checkEntryBox.py) και [tenisclub.db](tenisclub.db), τα οποία πρέπει να τοποθετηθούν στον ίδιο φάκελο
   
 ## Αρχεία:
 - [gui.py](gui.py): Περιέχει τις εντολές για την κατασκευή των γραφικών
-- [_sqlQueries.py](_sqlQueries.py): Περιέχει τις συναρτήσεις για την επικοινώνια μεταξύ του προγράμματος και της τοπικής βάσης δεδομένων "tenisclub.db"
-- [_frameDestroyers.py](_frameDestroyers.py): Περιέχει συναρτήσεις για την διαγράφη frames που έχουν κατασκευαστεί από το κύριο πρόγραμμα
-- [_checkEntryBox.py](_checkEntryBox.py): Περιέχει συναρτήσεις για τον έλεγχο των τιμών που δίνει ο χρήστης στα πεδία (Entry Boxes)
+- [\_sqlQueries.py](_sqlQueries.py): Περιέχει τις συναρτήσεις για την επικοινώνια μεταξύ του προγράμματος και της τοπικής βάσης δεδομένων "tenisclub.db"
+- [\_frameDestroyers.py](_frameDestroyers.py): Περιέχει συναρτήσεις για την διαγράφη frames που έχουν κατασκευαστεί από το κύριο πρόγραμμα
+- [\_checkEntryBox.py](_checkEntryBox.py): Περιέχει συναρτήσεις για τον έλεγχο των τιμών που δίνει ο χρήστης στα πεδία (Entry Boxes)
 - tenisclub.db: Αποτελεί την βάση δεδομένων της εφαρμογής  
   
   
