@@ -3325,6 +3325,10 @@ class GraphEnv():
 
         
     def admin_ranking(self):
+        row = q.find_all_melh(self.cursor)
+        for x in row:
+            x = dict(x)
+            q.update_win_ratio(self.cursor, x["memberid"])
         row = q.admin_total_ranking(self.cursor)
         self.ftitlos=tk.Frame(root)
         self.ftitlos.pack()
@@ -4322,3 +4326,4 @@ if __name__ == '__main__':
     graphics=GraphEnv(root)
     root.protocol("WM_DELETE_WINDOW", graphics.quit_window)
     root.mainloop()
+
