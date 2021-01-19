@@ -10,6 +10,7 @@
 ## Για το άνοιγμα της εφαρμογής μπορείτε:
 - Να εκτελέσετε το πρόγραμμα [tennis_club_team39.exe](tennis_club_team39.exe)
 	- Αρκεί να κατεβάσετε μόνο το εκτελέσιμο αρχείο
+	_**Προσοχή**: Ο υπολογιστής είναι πιθανό να θεωρήσει εσφαλμένα το πρόγραμμα ως ιό τύπου Trojan. Ωστόσο το πρόγραμμα είναι απολύτως ασφαλές._
 - Να εκτελέσετε το αρχείο [gui.py](gui.py) σε τερματικό ή μέσω editor
 	- Απαιτείται το κατέβασμα των αρχείων [gui.py](gui.py), [\_sqlQueries.py](_sqlQueries.py), [\_frameDestroyers.py](_frameDestroyers.py), [\_checkEntryBox.py](_checkEntryBox.py) και [tenisclub.db](tenisclub.db), τα οποία πρέπει να τοποθετηθούν στον ίδιο φάκελο
   
